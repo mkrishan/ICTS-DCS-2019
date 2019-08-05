@@ -1,0 +1,298 @@
+\documentclass[a4 paper]{article}
+% Set target color model to RGB
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage[utf8]{inputenc} 
+\usepackage[english]{babel}
+
+%% Packages
+\usepackage{scrextend}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage[inline]{enumitem}
+\usepackage{changes}
+\usepackage{chngcntr}
+\usepackage{cmap}
+\usepackage{color}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{footnote}
+\usepackage{lmodern}
+\usepackage{makeidx}
+\usepackage{mathtools} 
+\usepackage{xpatch}
+\usepackage{pgfplots}
+\usepackage{stmaryrd}
+\usepackage{pbox}
+\usepackage{apptools}
+\usepackage{booktabs}
+\usepackage{dsfont}
+\usepackage{caption}
+%\usepackage{subcaption}
+%	\expandafter\def\csname ver@subfig.sty\endcsname{}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage[square,numbers]{natbib}
+\usepackage{nicefrac}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{tocloft}
+\usepackage{url}
+\usepackage{xpatch}
+\usepackage{microtype}
+\usepackage{pgfplots}
+\usepackage{minibox}
+\usepackage{xcolor}
+\usepackage{sgame}  % Game theory packages
+\usepackage{subfig} % Manipulation and reference of small or sub figures and tables
+
+\makesavenoteenv{tabular}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc, intersections}
+\usetikzlibrary{trees, calc} % For extensive form games
+\pgfplotsset{compat=1.7}
+\usetikzlibrary{calc}	
+\usetikzlibrary{matrix}	
+
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc, intersections}
+\usetikzlibrary{trees, calc} % For extensive form games
+\pgfplotsset{compat=1.7}
+\usetikzlibrary{calc}	
+\usetikzlibrary{matrix}	
+
+%\usetikzlibrary{through,backgrounds}
+\hypersetup{%
+pdfauthor={MKL},%
+pdftitle={Homework},%
+pdfkeywords={Tikz,latex,bootstrap,uncertaintes},%
+pdfcreator={PDFLaTeX},%
+pdfproducer={PDFLaTeX},%
+}
+%\usetikzlibrary{shadows}
+% \usepackage[francais]{babel}
+\usepackage{booktabs}
+\input{macros.tex}
+\begin{document}
+
+\homework{Game theory \#1}{Due: 23/06/19}{Many}{}{MKL(s)}{NetId(s)}
+\textbf{Outline of the Module}: 
+\begin{itemize}
+    \item Non-Cooperative Games
+    \item Games on Networks
+    \item Mechanism Design
+\end{itemize}
+
+ 
+
+
+\pagenumbering{Alph}
+\pagenumbering{arabic}
+	
+% Inhaltsverzeichnis
+\tableofcontents
+\thispagestyle{empty} 
+  
+% Skript - Anfang 
+
+
+\section{Basic Elements of Noncooperative Games}
+\begin{example}[Traffic Routing Game]
+Each driver decides independently. Delay of a driver depends not only on her choice/strategy but also on the choice/strategy of the other fellow drivers on the road.
+\end{example}
+
+\begin{example}[Geospatial Exploration]
+\end{example}
+
+\begin{example}[Sponsered Search Auction]
+\end{example}
+\begin{example}[Matching Markets]
+\end{example}
+\begin{defn}
+	A \textbf{game} is a formal representation of a situation in which a number of individuals interact in a setting of strategic interdependence.
+	
+	\begin{itemize}
+		\item The players: Who is involved?
+		\item The rules: Who moves when? What do they know when they move? What can they do?
+		\item The outcomes: For each possible set of actions by the players, what is the outcome of the game?
+		\item The payoffs: What are the players' preferences over the possible outcomes?
+	\end{itemize} 
+\end{defn} ~\newpage
+
+
+\begin{example}[of simultaneous move games]  ~\
+	\begin{itemize}
+-		\item Matching Pennies
+			\begin{figure}[h!] \centering
+  				\begin{game}{2}{2}[Player $1$][Player $2$]
+   	    			   	 	&	  Heads    &  Tails   \\
+   	 				Heads   &    $-1, 1$   & $1, -1$  \\
+   	 				Tails   &    $1, -1$   & $-1, 1$  \\
+   				\end{game}
+			\end{figure} 
+		\item Meeting in New York ~\\
+			\begin{figure}[H] \centering
+  				\begin{game}{2}{2}[Player $1$][Player $2$]
+   	    			   	 		&	Empire State    &  Grand Central   \\
+   	 				Empire State   &    $100, 100$   & $0, 0$  \\
+   	 				Grand Central   &    $0,0$   & $100, 100$  \\
+   				\end{game}
+			\end{figure}
+		\item Examples of (simple) dynamic games
+			 \begin{figure}[h!]
+ 	\centering
+	\caption*{Prisoner's Dilemma in Extensive-form \label{PDExtensive}}
+    \begin{tikzpicture}[thin,
+      level 1/.style={sibling distance=40mm},
+      level 2/.style={sibling distance=25mm},
+      level 3/.style={sibling distance=15mm},
+      every circle node/.style={minimum size=1.5mm,inner sep=0mm}]
+      
+      \node[circle,draw,label=above:$P_1$] (root) {}
+        child { node [circle,fill,label=above:$P_2$] {}
+          child { 
+            node {$($-$1,1)$}
+            edge from parent
+              node[left] {$H$}}
+          child { 
+            node {$(1,$-$1)$}
+            edge from parent
+              node[right] {$T$}}
+          edge from parent
+            node[left] {$H$}}
+        child { node [circle,fill,label=above:$P_{2}$] {}
+          child { 
+            node {$(1,$-$1)$}
+              edge from parent
+                node[left] {$H$}}
+          child { 
+            node {$($-$1,1)$}
+              edge from parent
+                node[right] {$T$}}
+           edge from parent
+             node[right] {$T$}};
+    \end{tikzpicture}
+  \end{figure}
+		\item Matching Pennies Version C ~\\
+	% Node styles
+	\tikzset{
+	% Two node styles for game trees: solid and hollow
+	solid node/.style={circle,draw,inner sep=1.5,fill=black},
+	hollow node/.style={circle,draw,inner sep=1.5}
+	} 
+
+\begin{figure}[h!]
+	\centering
+	\begin{tikzpicture}[scale=1.5,font=\footnotesize]
+	% Specify spacing for each level of the tree
+	\tikzstyle{level 1}=[level distance=15mm,sibling distance=40mm]
+	\tikzstyle{level 2}=[level distance=15mm,sibling distance=22mm]
+	\tikzstyle{level 3}=[level distance=15mm,sibling distance=15mm]
+	% The Tree
+	\node(0)[hollow node,label=above:{$P1$}]{}
+	child{node(1)[solid node]{}
+		child{node[label=below:{$($-$1,1)$}]{} edge from parent node[left]{$H$}}
+		child{node(3)[label=below:{$(1,$-$1)$}]{} edge from parent node[right]{$T$}}
+		edge from parent node[left,xshift=-3]{$H$}
+	}
+	child{node(2)[solid node]{}
+		child{node[label=below:{$(1,$-$1)$}]{} edge from parent node[left]{$H$}}
+		child{node[label=below:{$($-$1,1)$}]{} edge from parent node[right]{$T$}}
+		edge from parent node[right,xshift=3]{$T$}
+	};
+	% information set
+	\draw[dashed,rounded corners=10]($(1) + (-.2,.25)$)rectangle($(2) +(.2,-.25)$);
+	% specify mover at 2nd information set
+	\node at ($(1)!.5!(2)$) {$P2$};
+	\end{tikzpicture}
+\end{figure}
+
+	\end{itemize}
+\end{example} ~\
+
+\begin{defn}[Information] ~\
+	\begin{itemize}
+		\item \textbf{Information Set:} A player doesn't know which of the nodes in the information set she is actually at. Therefore, at any decision node in a player's information set, there must be the same possible actions. More formally,in the extensive form, an information set is a set of decision nodes such that:
+			\begin{itemize}
+				\item Every node in the set belongs to one player.
+			 	\item When play reaches the information set, the player with the move cannot differentiate between nodes within the information set, i.e. if the information set contains more than one node, the player to whom that set belongs does not know which node in the set has been reached.
+			 			\end{itemize}
+			Therefore, at any decision node in a player's information set, there must be the same possible actions.
+		\item \textbf{Perfect Information:} A game is said to be of perfect information if each information set contains a single decision node. Otherwise, it is a game of \textbf{imperfect information}. In other words, perfect information persists, if each player, when making any decision, is perfectly informed of all the events that have previously occurred, including the early equipment.
+	\end{itemize}
+\end{defn} 
+
+\begin{defn}[Extensive Form Game] ~\
+	A game in \textbf{extensive form} consists of:
+	\begin{itemize}[label=(\roman*\upshape)]
+		\item A finite set of nodes $\mathcal{X}$, a finite set of possible actions $\mathcal{A}$, and a finite set of players $\{1, \dotsc, l\}$.
+		\item A function $p \colon \mathcal{X} \rightarrow \{ \mathcal{X} \cup \emptyset \}$ specifying a single immediate predecessor of each node $x$; $p(x) \in \mathcal{X}$ expect for one element $x_{0}$, the \textbf{initial node}. The immediate \textbf{successor node} of $x$ are $s(x) = p^{-1}(x)$. ~\\
+			To have a tree structure, a predecessor can never be a successor and vice versa. The set of \textbf{terminal nodes} $T = \{ x \in \mathcal{X} \colon s(x) = \emptyset \}$. All other nodes $X \setminus T$ are \textbf{decision nodes}.
+		\item A function $\alpha \colon \mathcal{X} \setminus \{ x_{0} \} \rightarrow \mathcal{A}$ giving the action that leads to any non-initial node $x$ from its immediate predecessor $p(x)$ with $x', x'' \in s(x); x' \neq x'' \Rightarrow \alpha(x') \neq \alpha(x'')$. The set of choices at decision node $x$ is $c(x) = \{ a \in \mathcal{A} \colon a = \alpha(x') \text{ for some } x' \in s(x) \}$.
+		\item A collection of information sets $\mathcal{H}$, and a function $H \colon \mathcal{X} \rightarrow \mathcal{H}$ assigning each decision node $x$ to an information set $H(x) \in \mathcal{H}$ with $c(x) = c(x')$ if H(x) = $H(x')$. ~\\
+			The choices available at information set $H$ can be written as
+			$$ C(H) = \{ a \in \mathcal{A} \colon a \in c(x) \text{ for } x \in H \}. $$
+		\item A function $\iota \colon \mathcal{H} \rightarrow \{ 0, 1, \dotsc, l \}$ assigning a player to each information set ($i = 0$ 'nature'). The collection of player i's information set is denoted by
+			$$ \mathcal{H}_i = \{ H \in \mathcal{H} \colon i = \iota(H) \}. $$
+		\item A function $\rho \colon \mathcal{H}_0 \times \mathcal{A} \rightarrow [0,1]$ assigning a probability to each action of nature with $\rho(H,a) = 0$ if $a \notin C(H)$ und $\sum_{a \in C(H)} \rho(H, a) = 1$ for all $H \in \mathcal{H}_{0}$.
+		\item A collection of payoff function $u = \{ u_1(\cdot), \dotsc, u_l(\cdot) \}$, where $u_i \colon T \rightarrow \R$.
+	\end{itemize}
+	\textbf{A game in extensive form:} $\Gamma_E = \{ \mathcal{X}, \mathcal{A}, I, p(\cdot), \alpha(\cdot), \mathcal{H}, H(\cdot), \iota(\cdot), \rho(\cdot), u \}$.
+\end{defn}
+
+\begin{comment*}
+	Restrictions of this defn:
+	\begin{itemize}
+		\item Finite set of actions
+		\item Finite number of moves
+		\item Finite number 	of players
+	\end{itemize}
+\end{comment*}
+
+\begin{defn}[Strategy]
+	Let $\mathcal{H}_i$ denote the collection of player $i$'s information sets, $\mathcal{A}$ the set of possible actions in the game, and $C(H) \subset \mathcal{A}$ the set of actions possible at information set $H$. A \textbf{strategy} for player $i$ is a function $s_i \colon \mathcal{H}_i \Rightarrow \mathcal{A}$ such that $s_i(H) \in C(H)$ for all $H \in \mathcal{H}_i$.
+\end{defn} 
+
+\begin{defn}[Normal Form Representation]
+	For a game with $I$ players, the \textbf{normal form representation} $\Gamma_N$ specifies for each player $i$ a set of strategies $\mathcal{S}_{i}$ (with $s_i \in \mathcal{S}_i$) and a payoff function $u_i(s_1, \dotsc, s_l)$, formally 
+	$$ \Gamma_N = \left[I, \{ S_i \}, \{ u_i(\cdot) \} \right]. $$
+\end{defn} 
+
+\begin{defn} ~\
+	\begin{itemize}
+		\item $s_i \colon \mathcal{H}_i \rightarrow \mathcal{A}$ describes deterministic choices at each $H \in \mathcal{H}_i$ and is called a \textbf{pure strategy}
+		\item a \textbf{mixed strategy} is a probability distribution over all pure strategies $\sigma_i \colon \mathcal{S}_i \rightarrow [0, 1]$, with $\sigma_i(s_i) \geq 0$ and $\sum_{s_i \in \mathcal{S}_i} \sigma_i(s_i) = 1$.
+		\item player $i$'s set of possible mixed strategies can be associated with the points of the simplex $\Delta(\mathcal{S}_i)$, called the \textbf{mixed extension} of $\mathcal{S}_i$.
+		\item since we assume that individuals are expected utility maximisers, player $i$'s utility of a profile of mixed strategies $\sigma = \left( \sigma_i, \dotsc, \sigma_l \right)$ is given by
+			$$ u_i(\sigma) = \sum_{s \in \mathcal{S}} [\sigma_1(s_1) \cdot \sigma_2(s_2) \cdot \dotsc \cdot \sigma_l(s_l)] \cdot u_i(s), $$
+			where $s = (s_1, \dotsc, s_l)$.
+	\end{itemize}
+\end{defn}
+
+\begin{defn}[Behaviour Strategy]
+	Given an extensive form game $\Gamma_E$, a \textbf{behaviour strategy} for player $i$ specifies for every information set $H \in \mathcal{H}_i$ and action $a \in C(H)$, a probability $\lambda_i(a, H) \geq 0$, with
+	$$ \sum_{a \in C(H)} \lambda_i(a, H) = 1 \text{ for all } H \in \mathcal{H}_i. $$
+\end{defn}
+
+\begin{defn}[Perfect Recall]
+	A player has \textbf{perfect recall} if he doesn't \enquote{forget} what she once knew, including her own actions. That means, perfect recall refers to the assumption that, at every decision node, each Player remembers what he did in prior moves, and each player remembers everything that he knew before; effectively, the assumption is one that players never forget information once it is acquired.
+\end{defn}
+
+\begin{thm}
+	If $\Gamma_E$ is an extensive form game with perfect recall, then for any mixed strategy there is an outcome equivalent behaviour strategy and vice versa.	
+\end{thm}
+\end{document} 
