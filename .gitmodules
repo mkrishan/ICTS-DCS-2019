@@ -1,9 +1,0 @@
-[submodule "Game_Theory"]
-	path = Game_Theory
-	url = https://www.overleaf.com/project/5d0b266aa7684476cd15b580
-[submodule "Networks"]
-	path = Networks
-	url = https://www.overleaf.com/project/5d0a23e1a464de3887469232
-[submodule "Time_Series"]
-	path = Time_Series
-	url = https://www.overleaf.com/project/5d0b3282a7684476cd15b8e6
