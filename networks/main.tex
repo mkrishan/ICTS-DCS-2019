@@ -1,0 +1,92 @@
+\documentclass[a4 paper]{article}
+% Set target color model to RGB
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+%\usetikzlibrary{through,backgrounds}
+\hypersetup{%
+pdfauthor={MKL},%
+pdftitle={Homework},%
+pdfkeywords={Tikz,latex,bootstrap,uncertaintes},%
+pdfcreator={PDFLaTeX},%
+pdfproducer={PDFLaTeX},%
+}
+%\usetikzlibrary{shadows}
+% \usepackage[francais]{babel}
+\usepackage{booktabs}
+\input{macros.tex}
+
+
+\begin{document}
+\homework{Network Analysis \#1}{Due: 23/06/19}{Many}{}{MKL(s)}{NetId(s)}
+\textbf{Outline of the Module}: 
+\begin{itemize}
+    \item Measuring Networks, and Random Graph Model, small world phenomenon, 
+    \item Network Construction, Inference, and Deconvolution, Motifs and Graphlets, Community Detection
+    \item Network Effects and Cascading Behavior, Influence Maximization, Outbreak Detection, Knowledge Graphs and Metapaths
+\end{itemize}
+
+\topic{1: Centrality Measures}{2 }
+
+\begin{defn}[Degree]
+    The degree $d_i$ of a node $i$ is given by its number of neighbors, i.e. $|\clN(i)|$.
+  \end{defn}
+\begin{defn}[Degree distribution]
+    In a graph $\clG = (\clV, \clE)$, recall that $d_i$ counts the number of incident edges in $\clE$ to $i$. Define $f_d$ to be
+    the fraction of vertices $i\in \clV$ with degree $d_i=d$. The collection $\set{f_d, d\geq 0}$ is called the degree distribution of $\clG$.
+  \end{defn}
+  
+    Many real world networks have a degree distribution fitting well power law distributions: 
+    \[
+      f_{d_i}(d) = \P(d_i = d) = \frac{c}{d^\gamma}, \quad c\in\Rset, \gamma > 0.
+    \]
+
+  Those heavy-tail distributions describe few vertices with very high degrees.
+  
+  \begin{defn}[distance]
+    \begin{itemize}
+    \item The Length  of a path $e_1,\dots, e_k$ is the number of edges entering the path (here $k$).
+    \item If two nodes $i,j$ are connected in $G$, then the distance $\ell_{ij}$ is the length of the shortest path between $i$ and $j$. If the two nodes are not connected then $\ell_{ij} = \infty$.
+    \end{itemize}
+  \end{defn}
+  
+  \begin{defn}[mean distance]
+    Mean distance in $\clG = (\clV,\clE)$ is defined by
+    \[
+      \bar{\ell} = \frac{1}{n(n-1)}\sum_{(i,j)\in\clV^2} \ell_{ij} = \frac{2}{n(n-1)}\sum_{i<j} \ell_{ij}.
+    \]
+  \end{defn}
+
+  \begin{defn}[diameter]
+    The diameter of $\clG$ is the greatest distance between two nodes:
+    \[
+      \mathrm{diameter(\clG)} = \max_{(i,j)\in\clV\times\clV} \left(\ell_{ij}\right)
+    \]
+  \end{defn}
+  \begin{defn}[Farness, Closeness]
+    Farness is the sum of the length of the shortest paths between the node and all other nodes in the graph. Closeness is defined as its reciprocal:
+    \[C(x)={\frac  {1}{\sum _{y}d(y,x)}}.\]
+    $\rightsquigarrow$ \textit{The more central a node is, the closer it is to all other nodes.}
+  \end{defn}
+  
+  \begin{defn}[Betweenness]
+    For every pairs of vertices, there exists at least one shortest path between the vertices such that the number of edges that the path passes through is minimized.
+    The betweenness centrality for each vertex is the number of these shortest paths that pass through the vertex: 
+    \[
+        g(i)=\sum _{{j\neq i\neq k}}{\frac  {\sigma _{{jk}}(i)}{\sigma _{{jk}}}}    
+    \]
+    where $\sigma _{jk}$ is the total number of shortest paths from node $j$ to node $k$ and $\sigma _{jk}(i)$ the number of those paths that pass through $i$.
+
+  \end{defn}
+
+\subtopic{a}
+
+\subtopic{b}
+\end{document} 
